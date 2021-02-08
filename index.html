@@ -20,35 +20,35 @@
       <h2 class="header__title">IP Address Tracker</h2>
 
       <form id="searchForm" class="search__form" action="#" method="get" onsubmit="replaceIPDetails(searchField.value);return false">
-        <input type="search" name="searchField" id="searchField" placeholder="Search for any IP address or domain">
-        <button type="button" id="submit"></button>
+        <input type="search" name="searchField" aria-label="search" id="searchField" placeholder="Search for any IP address or domain">
+        <button type="submit" aria-label="submit" id="submit"></button>
       </form>
 
       <div class="header__details">
 
         <div class="details__item">
-          <p class="details__title details--small">IP Address</p>
+          <h5 class="details__title details--small">IP Address</h5>
           <div class="details__placeholder">
           </div>
           <p class="details__title details--medium" id="ip-address"></p>
         </div>
 
         <div class="details__item">
-          <p class="details__title details--small">Location</p>
+          <h5 class="details__title details--small">Location</h5>
           <div class="details__placeholder">
           </div>
           <p class="details__title details--medium" id="location"></p>
         </div>
 
         <div class="details__item">
-          <p class="details__title details--small">Timezone</p>
+          <h5 class="details__title details--small">Timezone</h5>
           <div class="details__placeholder">
           </div>
           <p class="details__title details--medium" id="timezone"></p>
         </div>
 
         <div class="details__item">
-          <p class="details__title details--small">ISP</p>
+          <h5 class="details__title details--small">ISP</h5>
           <div>
             <div class="details__placeholder">
             </div>
