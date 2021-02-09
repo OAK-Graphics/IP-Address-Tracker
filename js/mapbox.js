@@ -59,7 +59,7 @@ function userIPDetails(ip) {
             element.classList.add("show")
         });
 
-        viewMap(data.location.lat, data.location.lng);
+        viewMap(data.location.lng, data.location.lat);
 
     })
 
@@ -93,7 +93,7 @@ function replaceIPDetails(ip) {
     
                 isp.innerText = data.isp;
     
-                viewMap(data.location.lat, data.location.lng);
+                viewMap(data.location.lng, data.location.lat);
         
             })
     
@@ -117,7 +117,7 @@ function replaceIPDetails(ip) {
     
                 isp.innerText = data.isp;
     
-                viewMap(data.location.lat, data.location.lng);
+                viewMap(data.location.lng, data.location.lat);
         
             })
     
@@ -141,7 +141,7 @@ function replaceIPDetails(ip) {
     
                 isp.innerText = data.isp;
     
-                viewMap(data.location.lat, data.location.lng);
+                viewMap(data.location.lng, data.location.lat);
         
             })
     
@@ -169,36 +169,43 @@ function replaceIPDetails(ip) {
 
 }
 
-function viewMap(lat, lng) {
+function viewMap(lng, lat) {
 
-    var container = L.DomUtil.get('map');
-
-    if (container != null) {
-
-        container._leaflet_id = null;
-
-    }
-
-    var map = L.map('map', {zoomControl: false}).setView([lat, lng], 14);
-
-    L.control.zoom({position: 'bottomright'}).addTo(map);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a> | Coded by <a href="https://www.instagram.com/OAK_Graphics">OAK Graphics</a>.',
-    
-    }).addTo(map);
-
-    var marker = L.icon({
-
-        iconUrl: "../images/icon-location.svg",
-
-        // iconAnchor: [lat, lng]
-        iconSize:     [23, 28],
-        iconAnchor:   [11.5, 28]
-
+    mapboxgl.accessToken = 'pk.eyJ1Ijoib2FrLWdyYXBoaWNzIiwiYSI6ImNra3hxenlzMjBzeG4ycm80NHZ3MGJneTAifQ.E7zQKsCgBb2FShViP-GUcw';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [lng, lat],
+    zoom: 12
     });
-
-    L.marker([lat, lng], {icon: marker}).addTo(map);
+     
+    map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'bottom-right');
+    
+    var geojson = {
+        
+        type: 'FeatureCollection',
+    
+        features: [{
+    
+            type: 'Feature',
+            
+            geometry: {
+            type: 'Point',
+            coordinates: [lng, lat]
+            }
+    
+        }]
+    
+    };
+          
+    geojson.features.forEach(function(marker) {
+    
+    var el = document.createElement('div');
+    el.className = 'marker';
+    
+    new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+    });
     
 }
