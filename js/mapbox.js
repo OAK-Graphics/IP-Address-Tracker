@@ -1,4 +1,4 @@
-const api_key = "at_EOO0ppC00aIpB6lez7wrfAtNvcqee";
+const api_key = "at_2fcOdaTB9m101A9S7InEBHyRoofPE";
 const searchField = document.querySelector("#searchField");
 const submit = document.querySelector("#submit");
 const ipAddress = document.querySelector("#ip-address");
